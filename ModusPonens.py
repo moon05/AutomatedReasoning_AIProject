@@ -19,8 +19,10 @@ def parser(content):
 arg1 = sys.argv[1]
 #####################################################################
 
-variables = {}
+#this is to store the variables with their True/False values one decided
+variables = {} #this is called a dictionary, similar to hashtable in java
 
+#enum class, python doesn't really have one
 def enum(**enums):
 	return type('Enum', (), enums)
 
@@ -38,6 +40,7 @@ def ListReverse(List):
 	return temp
 
 
+#assigning values to those sentences similar to "A" or "not A"
 def TruthFinder(dictionary):
 
 	if (type(dictionary) != dict):
@@ -62,6 +65,7 @@ def TruthFinder(dictionary):
 			return dictionary
 
 
+#this will be for IMPLIES and IFF
 def ModelChecker(dictionary):
 
 	if (type(dictionary) != dict):
@@ -74,6 +78,6 @@ def ModelChecker(dictionary):
 	
 	if (length > 2):
 		
-
+#Connectives
 BinaryConnective = enum(AND = 1, OR = 2, IMPLIES = 3, IFF = 4)
 UnaryConnective = enum(NOT = 5)
