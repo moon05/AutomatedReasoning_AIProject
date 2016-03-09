@@ -4,6 +4,7 @@ import os
 path = os.getcwd()
 
 #####################################################################
+#this is for non-hardcoded file, I will write that later
 def reader(filename):
 
 	foo = open(filename,"r")
@@ -18,6 +19,8 @@ def parser(content):
 
 arg1 = sys.argv[1]
 #####################################################################
+
+#for hardcoded knowledgebase
 
 #this is to store the variables with their True/False values one decided
 variables = {} #this is called a dictionary, similar to hashtable in java
