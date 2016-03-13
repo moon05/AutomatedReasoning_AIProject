@@ -44,7 +44,12 @@ def TableGenerator(ListVar):
 		table_list.append(d)
 	
 	return table_list
-		
+
+#Prints the table in a more readable way		
+def prettyPrint(table):
+	for n in table:
+		print n
+		print
 
 # This function assigns True/False to a variable depending on
 # the sentence.
