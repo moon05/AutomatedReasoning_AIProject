@@ -56,3 +56,6 @@ print truthtable.variables
 
 print solver(table, ConvertedSentence2)
 
+
+if (truthtable.sentenceSolved[0] == True and truthtable.sentenceSolved[1] == True):
+	print "It Entails"
