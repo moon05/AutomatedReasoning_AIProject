@@ -48,4 +48,20 @@ R3()
 R4("B11")
 R5("B21")
 
-#truthtable.prettyPrint(Table)
+def inference():
+	values_to_infer = list()
+	for n in Table:
+		if (n["R1"] and n["R2"] and n["R3"] and n["R4"] and n["R5"] is True):
+			values_to_infer.append(n["P12"])
+
+	if False in values_to_infer:
+		return False
+	else:
+		return True
+
+truthtable.prettyPrint(Table)
+
+
+print "Inferred from sentences R1 through R5, P11 is"
+print inference()
+
