@@ -1,8 +1,8 @@
 import truthtable
 import random
 
-presentvariables = []
-len_Vars = len(presentvariables)
+presentVariables = []
+len_Vars = len(presentVariables)
 
 def flip(truthRow,Var):
 	
@@ -84,7 +84,7 @@ def WalkSAT(clauses, probability, maxflips):
 
 			else:
 
-				varFlip = varMaxesSAT(clauses, variablesList, model)
+				varFlip = varMaxesSAT(clauses, presentVariables, model)
 				model = flip(model, varFlip)
 
 		return "Failure"
