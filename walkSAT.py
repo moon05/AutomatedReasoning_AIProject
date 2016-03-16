@@ -59,7 +59,7 @@ def WalkSAT(clauses, probability, maxflips):
 
 	for i in range(maxflips):
 		try:
-		tempTable = truthtable.TableGenerator[presentvariables]
+		tempTable = truthtable.TableGenerator[presentVariables]
 		len_of_table = tempTable
 
 		
