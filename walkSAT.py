@@ -42,6 +42,17 @@ def numSatisfied(clauseList, Row):
 
 def varMaxesSAT(clauseList, VARS, Row):
 
+	var = VARS[0]
+	clauseSatisfied = 0
+
+	for n in VARS:
+
+		tempVar = n
+		if ( numSatisfied(clauseList,flip(tempVar)) > clauseSatisfied ):
+			var = tempVar
+			clauseSatisfied = numSatisfied(clauseSatisfied,flip(tempVar))
+
+	return var
 
 
 def WalkSAT(clauses, probability, maxflips):
@@ -72,15 +83,11 @@ def WalkSAT(clauses, probability, maxflips):
 				model = flip(temp_model, var_to_change)
 
 			else:
-				
+
+				varFlip = varMaxesSAT(clauses, variablesList, model)
+				model = flip(model, varFlip)
 
 		return "Failure"
 
 		except IndexError:
 			return "Failure"
-
-
-
-
-
-
