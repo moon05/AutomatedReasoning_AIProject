@@ -33,7 +33,14 @@ def valueConverter(tableROW, clause, variableList):
 		varB = tempClause.pop()
 		if (tempClause[-1] is "NOT"):
 			# print "In NOT"
+			print tempClause
 			op = tempClause.pop()
+			print op
+			print varB
+			if ( type(varB)==bool ):
+				tempClause.append (not varB)
+				return valueConverter(tableROW, tempClause, variableList)
+			print tableROW[varB]
 			tempClause.append(not tableROW[varB])
 			# print "Printing from double NOT"
 			print tempClause
