@@ -11,7 +11,7 @@ def isImmortal():
 	for n in Table:
 		if (n["Mythical"] is True):
 			n["=>Immortal"] = True
-			n["=>Mammal"] = False
+			n["=>Mammal"] = True
 			n["=>Mortal"] = False
 
 def isMammal():
@@ -79,14 +79,13 @@ def entailmentC():
 	print "The unicorn is Horned"
 	return
 
+
+
 isImmortal()
 isMammal()
 isHorned()
 isMagical()
 KB()
-
-truthtable.prettyPrint(Table)
-
 
 entailmentA()
 entailmentB()
