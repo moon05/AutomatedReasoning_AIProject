@@ -1,7 +1,7 @@
 import truthtable
 import collections
 
-presentVariables = ["Mythical", "Immortal", "Mortal", "Horned", "Magical"]
+presentVariables = ["Mythical", "Immortal", "Mammal", "Mortal", "Horned", "Magical"]
 
 global Table
 Table = truthtable.TableGenerator(presentVariables)
@@ -10,73 +10,84 @@ Table = truthtable.TableGenerator(presentVariables)
 def isImmortal():
 	for n in Table:
 		if (n["Mythical"] is True):
-			n["isImmortal"] = True
-			n["isMammal"] = False
+			n["=>Immortal"] = True
+			n["=>Mammal"] = False
+			n["=>Mortal"] = False
 
 def isMammal():
 	for n in Table:
 		if (n["Mythical"] is False):
-			n["isMammal"] = True
-			n["isImmortal"] = False
+			n["=>Mammal"] = True
+			n["=>Mortal"] = True
+			n["=>Immortal"] = False
 
 def isHorned():
 	for n in Table:
-		if (n["isImmortal"] is True or n["isMammal"] is True):
-			n["isHorned"] = True
+		if (n["=>Immortal"] is True or n["=>Mammal"] is True):
+			n["=>Horned"] = True
 		else:
-			n["isHorned"] = False
+			n["=>Horned"] = False
 
 def isMagical():
 	for n in Table:
-		if (n["isHorned"] is True):
-			n["isMagical"] = True
+		if (n["=>Horned"] is True):
+			n["=>Magical"] = True
 		else:
-			n["isMagical"] = False
+			n["=>Magical"] = False
+
+def KB():
+	for n in Table:
+		if ( n["=>Immortal"] and n["=>Mammal"] and n["=>Mortal"] and n["=>Horned"] and n["=>Magical"] is True ):
+			n["KB"] = True
+		else:
+			n["KB"] = False
 
 def entailmentA():
 	i = 0
 	for n in Table:
-		if (n["isMagical"] is True):
-			if (n["isHorned"] is True):
-				if (n["Mythical"] is False):
-					print "Doesn't entail"
-					print "We can't prove it"
-					return
-		print i
-		i = i + 1
-		print "Has entailed so far"
+		if ( n["KB"] is True ):
+			if ( n["Mythical"] is False ):
+				print "We can't prove"
+				return
+
+	print "We have proved (a)"
+	print "The unicorn is Mythical"
 	return
 
 def entailmentB():
-	i = 0
-	for n in Table:
-		if (n["Mythical"] is True):
-			if (n["Immortal"] is True and n["Mortal"] is False):
-				if (n["Horned"] is False):
-					print n
-					print "Doesn't entail"
-					print "Mythical !> Immortal !> Horned !> Magical"
-					print "We can't prove it"
-					return
-		if (n["Mythical"] is False):
-			if (n["Immortal"] is False and n["Mortal"] is True):
-				if (n["Horned"] is False):
-					print n
-					print "Doesn't entail"
-					print "Mythical !> Mortal !> Horned !> Magical"
-					print "We can't prove it"
-					return					
 
-		print i
-		i = i + 1
-		print "Has entailed so far"
+	for n in Table:
+		if ( n["KB"] is True ):
+			if ( n["Magical"] == False ):
+				print "We can't prove"
+				return
+
+	print "We have proved (b)"
+	print "The unicorn is Magical"
+
 	return
 
+def entailmentC():
+
+	for n in Table:
+		if ( n["KB"] is True ):
+			if ( n["Horned"] is False ):
+				print "We can't prove"
+				return
+
+	print "We have proved (c)"
+	print "The unicorn is Horned"
+	return
 
 isImmortal()
 isMammal()
 isHorned()
 isMagical()
+KB()
+
+truthtable.prettyPrint(Table)
+
 
 entailmentA()
 entailmentB()
+entailmentC()
